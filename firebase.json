@@ -1,0 +1,7 @@
+// <project-root>/firebase.json
+{
+    "react-native": {
+        "admob_android_app_id": "ca-app-pub-6969222413270843~5098150642 ",
+        "admob_ios_app_id": "ca-app-pub-xxxxxxxx~xxxxxxxx"
+    }
+}

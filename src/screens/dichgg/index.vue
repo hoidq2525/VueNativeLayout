@@ -2,7 +2,7 @@
   <nb-container :style="{ backgroundColor: '#fff' }">
     <nb-header>
       <nb-left>
-        <nb-button transparent :onPress="ToScreenGG">
+        <nb-button transparent :onPress="Goback">
           <nb-icon name="arrow-back" />
         </nb-button>
       </nb-left>
@@ -11,7 +11,7 @@
       </nb-body>
       <nb-right />
     </nb-header>
-    <web-view :source="{uri: 'https://translate.google.com/?hl=vi'}" />
+    <web-view ref="WEBVIEW_REF" :source="{uri: 'https://translate.google.com/?hl=vi'}" />
     <view class="view-wrapper-1">
       <nb-button rounded warning :onPress="ToScreenD">
         <nb-text>Dịch Hán Việt</nb-text>
@@ -37,8 +37,8 @@ export default {
     };
   },
   methods: {
-    ToScreenGG() {
-      this.navigation.navigate("DichGG");
+    Goback() {
+      this.$refs.WEBVIEW_REF.goBack();
     },
     ToScreenD() {
       this.navigation.navigate("Dich");

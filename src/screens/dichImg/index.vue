@@ -2,7 +2,7 @@
   <nb-container :style="{ backgroundColor: '#fff' }">
     <nb-header>
       <nb-left>
-        <nb-button transparent :onPress="() => this.props.navigation.openDrawer()">
+        <nb-button transparent :onPress="Goback">
           <nb-icon name="arrow-back" />
         </nb-button>
       </nb-left>
@@ -12,6 +12,7 @@
       <nb-right />
     </nb-header>
     <web-view
+      ref="WEBVIEW_REF"
       :source="{uri: 'http://preview.codecanyon.net/item/pic-to-txt-turn-images-into-editable-text-optical-character-recognition-ocr/full_screen_preview/22809285'}"
     />
     <!-- <web-view :source="{uri: 'http://195.148.30.97/cgi-bin/ocr.py'}" /> -->
@@ -32,8 +33,8 @@ export default {
     };
   },
   methods: {
-    htmlrender() {
-      return "";
+    Goback() {
+      this.$refs.WEBVIEW_REF.goBack();
     }
   },
   components: {

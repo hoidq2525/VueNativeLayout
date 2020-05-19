@@ -1,37 +1,22 @@
 <template>
-  <nb-container>
-    <status-bar :barStyle="'light-content'"></status-bar>
-    <image-background :source="launchScreenBg" class="imageContainer">
-      <view class="logoContainer" :style="stylesObj.logoContainerStyle">
-        <!-- <image-background
-          :source="launchscreenLogo"
-          class="logo"
-          :style="stylesObj.logoStyle"
-        /> -->
-      </view>
-      <view class="text-container">
-        <nb-h3 :style="{ marginBottom: 8 }" class="text-color-white"
-          >Đa ứng dụng</nb-h3
-        >
-        <nb-h3 class="text-color-white">Vue Native Component Application</nb-h3>
-      </view>
-      <view :style="{ marginBottom: 80 }">
-        <nb-button
-          :style="stylesObj.btnContainer"
-          :onPress="handleLetGoBtnPress"
-        >
-          <nb-text> Bắt đầu!</nb-text>
+  <nb-container :style="{ backgroundColor: '#fff' }">
+    <nb-header>
+      <nb-left>
+        <nb-button transparent :onPress="backWeb">
+          <nb-icon name="arrow-back" />
         </nb-button>
-      </view>
-    </image-background>
+      </nb-left>
+      <nb-body>
+        <nb-title>Trang Web</nb-title>
+      </nb-body>
+      <nb-right />
+    </nb-header>
+    <web-view  ref="WEBVIEW_REF" :source="{uri: 'https://trickgame24h.blogspot.com'}" />
   </nb-container>
 </template>
 
 <script>
-import { Dimensions, Platform } from "react-native";
-import launchScreenBg from "../../../assets/background.jpg";
-import launchscreenLogo from "../../../assets/logo-kitchen-sink.png";
-
+import { WebView } from "react-native-webview";
 export default {
   props: {
     navigation: {
@@ -40,58 +25,26 @@ export default {
   },
   data() {
     return {
-      launchScreenBg,
-      launchscreenLogo,
-      stylesObj: {
-        logoContainerStyle: {
-          marginTop: Dimensions.get("window").height / 8
-        },
-        logoStyle: {
-          left: Platform.OS === "android" ? 40 : 50,
-          top: Platform.OS === "android" ? 35 : 60
-        },
-        btnContainer: {
-          backgroundColor: "#6faf98",
-          alignSelf: "center"
-        }
-      }
+      text2: ""
     };
   },
   methods: {
-    handleLetGoBtnPress() {
-      this.navigation.openDrawer();
+    backWeb() {
+      this.$refs.WEBVIEW_REF.goBack();
     }
+  },
+  components: {
+    "web-view": WebView
   }
 };
 </script>
 
 <style>
-.imageContainer {
-  flex: 1;
-}
-.text-color-primary {
-  color: blue;
-  font-family: Roboto;
-}
-.logoContainer {
-  flex: 1;
-  margin-bottom: 30;
-}
-.logo {
-  position: absolute;
-  width: 280;
-  height: 100;
-}
-.text-container {
+.view-wrapper-1 {
+  justify-content: center;
   align-items: center;
-  margin-bottom: 50;
-  background-color: transparent;
-}
-.text-color-white {
-  color: white;
-}
-.button-container {
-  background-color: #6faf98;
-  align-self: center;
+  flex-direction: row;
+  padding-bottom: 20px;
+  /* justify-content: space-between; */
 }
 </style>
